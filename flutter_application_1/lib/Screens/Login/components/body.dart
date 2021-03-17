@@ -5,6 +5,8 @@ import 'package:flutter_application_1/components/already_have_an_account_acheck.
 import 'package:flutter_application_1/components/rounded_button.dart';
 import 'package:flutter_application_1/components/rounded_input_field.dart';
 import 'package:flutter_application_1/components/rounded_password_field.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/root_app.dart';
 
 
 class Body extends StatelessWidget {
@@ -32,11 +34,19 @@ class Body extends StatelessWidget {
             RoundedPasswordField(
               onChanged: (value) {},
             ),
-            RoundedButton(
+           RoundedButton(
               text: "LOGIN",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return RootApp();
+                    },
+                  ),
+                );
+              },
             ),
-            SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
               press: () {
                 Navigator.push(
