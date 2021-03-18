@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Explore/_Explore1.dart';
 import 'package:flutter_application_1/Screens/Notif/Notification.dart';
+import 'package:flutter_application_1/Screens/Profile/_Profil1.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/theme/colors.dart';
 
@@ -125,7 +127,16 @@ class _RootAppState extends State<RootApp> {
             SizedBox(width: 40.0),
             IconButton(
               icon: Icon(Icons.search_outlined, size: 40),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Explore1();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(width: 40.0),
             IconButton(
@@ -135,7 +146,16 @@ class _RootAppState extends State<RootApp> {
             SizedBox(width: 40.0),
             IconButton(
               icon: Icon(Icons.account_circle_outlined, size: 40),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Profil1();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(width: 40.0),
           ],
