@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Notif/Notification.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/theme/colors.dart';
 
@@ -59,7 +60,7 @@ class _RootAppState extends State<RootApp> {
   Widget getAppBar() {
     if (pageIndex == 0) {
       return AppBar(
-        backgroundColor: Colors.black38,
+        backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -67,13 +68,20 @@ class _RootAppState extends State<RootApp> {
               "We Meet",
               style: TextStyle(fontFamily: 'Billabong', fontSize: 35, color: Colors.black),
             ),
-             SizedBox(width: 110.0),
+             SizedBox(width: 50.0),
             IconButton(
               icon: Icon(Icons.favorite, size: 40, color: Colors.black),
               
-              onPressed: () {},
+              onPressed: () { Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Notif1();
+                    },
+                  ),
+                );},
             ),
-            SizedBox(width: 10.0),
+            SizedBox(width: 5.0),
             IconButton(
               icon: Icon(Icons.group, size: 40, color: Colors.black),
               onPressed: () {},
@@ -106,7 +114,7 @@ class _RootAppState extends State<RootApp> {
     return Container(
         width: double.infinity,
         height: 55,
-        decoration: BoxDecoration(color: Colors.black38),
+        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
