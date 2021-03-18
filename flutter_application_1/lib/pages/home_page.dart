@@ -6,6 +6,7 @@ import 'package:flutter_application_1/constant/story_json.dart';
 import 'package:flutter_application_1/widgets/story_item.dart';
 import 'package:line_icons/line_icons.dart';
 
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();

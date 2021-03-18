@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Explore/_Explore1.dart';
 import 'package:flutter_application_1/Screens/Notif/Notification.dart';
 import 'package:flutter_application_1/Screens/Profile/_Profil1.dart';
+import 'package:flutter_application_1/pages/chat_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/theme/colors.dart';
+import 'package:flutter_application_1/Screens/Upload/upload1.dart';
 
 class RootApp extends StatefulWidget {
   @override
@@ -86,7 +88,14 @@ class _RootAppState extends State<RootApp> {
             SizedBox(width: 5.0),
             IconButton(
               icon: Icon(Icons.group, size: 40, color: Colors.black),
-              onPressed: () {},
+              onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ChatPage();
+                    },
+                  ),
+                );},
             ),
             SizedBox(width: 3.0),
           ],
@@ -141,7 +150,16 @@ class _RootAppState extends State<RootApp> {
             SizedBox(width: 40.0),
             IconButton(
               icon: Icon(Icons.file_upload, size: 40),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return NewPostPage();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(width: 40.0),
             IconButton(
