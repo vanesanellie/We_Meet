@@ -4,6 +4,7 @@ import 'package:flutter_application_1/theme/colors.dart';
 import 'package:flutter_application_1/constant/post_json.dart';
 import 'package:flutter_application_1/constant/story_json.dart';
 import 'package:flutter_application_1/widgets/story_item.dart';
+import 'package:flutter_application_1/Screens/Comment/Comments.dart';
 import 'package:line_icons/line_icons.dart';
 
 
@@ -252,7 +253,16 @@ class PostItem extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.mode_comment_outlined,
                   size: 30, color: Colors.black),
-              onPressed: () {},
+              onPressed: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CommentsPage();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(width: .0),
             IconButton(
