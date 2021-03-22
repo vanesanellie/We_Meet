@@ -95,14 +95,14 @@ class Body extends StatelessWidget {
               'Register',
               style: TextStyle(color: hexToColor("#F2A03D"), fontSize: 25.0),
             ),
-            Padding(padding: EdgeInsets.only(top: 50.0)),
+            Padding(padding: EdgeInsets.only(top: 30.0)),
             TextFormField(
               controller: username,
               decoration: new InputDecoration(
                 labelText: "Enter Username",
                 fillColor: Colors.white,
                 border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(25.0),
+                  borderRadius: new BorderRadius.circular(20.0),
                   borderSide: new BorderSide(),
                 ),
                  prefixIcon: Icon(
@@ -133,7 +133,7 @@ class Body extends StatelessWidget {
                 fillColor: Colors.white,
                 filled: true,
                 border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(25.0),
+                  borderRadius: new BorderRadius.circular(20.0),
                   borderSide: new BorderSide(),
                 ),
                  prefixIcon: Icon(
@@ -164,7 +164,7 @@ class Body extends StatelessWidget {
                 fillColor: Colors.white,
                 filled: true,
                 border: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(25.0),
+                  borderRadius: new BorderRadius.circular(20.0),
                   borderSide: new BorderSide(),
                 ),
                 prefixIcon: Icon(
@@ -194,7 +194,7 @@ class Body extends StatelessWidget {
                 senddata(context);
               },
             ),
-            SizedBox(height: size.height * 0.03),
+            SizedBox(height: size.height * 0.02),
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {
