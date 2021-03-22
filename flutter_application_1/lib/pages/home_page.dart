@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/theme/colors.dart';
 import 'package:flutter_application_1/constant/post_json.dart';
-import 'package:flutter_application_1/constant/story_json.dart';
-import 'package:flutter_application_1/widgets/story_item.dart';
 import 'package:flutter_application_1/Screens/Comment/Comments.dart';
-import 'package:line_icons/line_icons.dart';
+
 
 
 class HomePage extends StatefulWidget {
@@ -23,78 +21,6 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.only(right: 20, left: 15, bottom: 10),
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        width: 65,
-                        height: 65,
-                        child: Stack(
-                          children: <Widget>[
-                            Container(
-                              width: 65,
-                              height: 65,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    image: NetworkImage(profile),
-                                    fit: BoxFit.cover),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Container(
-                                width: 19,
-                                height: 19,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle, color: white),
-                                child: Icon(
-                                  Icons.add_circle,
-                                  color: buttonFollowColor,
-                                  size: 19,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 13.0,
-                      ),
-                      SizedBox(
-                          width: 50,
-                          height: 13,
-                          child: Text(name,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(color: black))),
-                    ],
-                  ),
-                ),
-                Row(
-                    children: List.generate(stories.length, (index) {
-                  return StoryItem(
-                    img: stories[index]['img'],
-                    name: stories[index]['name'],
-                  );
-                })),
-              ],
-            ),
-          ),
-          Divider(
-            color: white.withOpacity(0.5),
-          ),
-          Divider(
-            color: Colors.black26,
-            height: 0,
-            thickness: 2,
-          ),
           Column(
             children: List.generate(posts.length, (index) {
               return PostItem(
@@ -115,16 +41,16 @@ class _HomePageState extends State<HomePage> {
 }
 
 class PostItem extends StatelessWidget {
-  final String profileImg;
-  final String name;
-  final String postImg;
-  final String caption;
+  String profileImg;
+  String name;
+  String postImg;
+  String caption;
   final isLoved;
 
-  final String timeAgo;
-  final String likedBy;
+  String timeAgo;
+  String likedBy;
 
-  const PostItem({
+  PostItem({
     Key key,
     this.profileImg,
     this.name,
