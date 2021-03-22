@@ -16,36 +16,31 @@ class _Profil1State extends State<Profil1> {
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
-
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-
                 Container(
-                  height: size.height * 0.40,
+                  height: size.height * 0.45,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/Post_11.jpg"), 
+                      image: AssetImage("assets/images/Post_11.jpg"),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Column(
                     children: <Widget>[
-
                       SizedBox(
                         height: 36,
                       ),
-
                       CircleAvatar(
                         radius: 48,
-                        backgroundImage: AssetImage("assets/images/Post_11.jpg"),
+                        backgroundImage:
+                            AssetImage("assets/images/Post_11.jpg"),
                       ),
-
                       SizedBox(
                         height: 16,
                       ),
-
                       Text(
                         "Angellina",
                         style: TextStyle(
@@ -54,11 +49,9 @@ class _Profil1State extends State<Profil1> {
                           fontSize: 22,
                         ),
                       ),
-
                       SizedBox(
                         height: 4,
                       ),
-
                       Text(
                         "Untar",
                         style: TextStyle(
@@ -66,127 +59,125 @@ class _Profil1State extends State<Profil1> {
                           fontSize: 16,
                         ),
                       ),
-
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        height: 30,
+                        width: 50,
+                        color: Colors.blue,
+                        child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                                  Text(
+                                    "EDIT",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  ]
+                        )
+                      ),
                       Expanded(
                         child: Container(),
                       ),
-
                       Container(
                         height: 64,
                         color: Colors.black.withOpacity(0.4),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-
                             Expanded(
                               child: Container(),
                             ),
-
                             Container(
                               width: 110,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-
                                   Text(
-                                    "VISIT", 
+                                    "VISIT",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
                                     ),
                                   ),
-                                  
                                   SizedBox(
                                     height: 4,
                                   ),
-
                                   Text(
-                                    "13564", 
+                                    "13564",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
-
                             Container(
                               width: 110,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-
                                   Text(
-                                    "FOLLOWING", 
+                                    "FOLLOWING",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
                                     ),
                                   ),
-                                  
                                   SizedBox(
                                     height: 4,
                                   ),
-
                                   Text(
-                                    "364", 
+                                    "364",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
-
                             Container(
                               width: 110,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-
                                   Text(
-                                    "FOLLOWER", 
+                                    "FOLLOWER",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
                                     ),
                                   ),
-                                  
                                   SizedBox(
                                     height: 4,
                                   ),
-
                                   Text(
-                                    "3753", 
+                                    "3753",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-
                                 ],
                               ),
                             ),
-
                             Expanded(
                               child: Container(),
                             ),
-
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),
-
                 Material(
                   elevation: 1,
                   child: Container(
@@ -194,33 +185,33 @@ class _Profil1State extends State<Profil1> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-
                         Icon(
                           Icons.web,
                           color: Colors.black,
                           size: 28,
                         ),
-
                         Icon(
                           Icons.image,
                           color: Colors.black,
                           size: 28,
                         ),
-
                         Icon(
                           Icons.play_circle_outline,
                           color: Colors.black,
                           size: 28,
                         ),
-
                       ],
                     ),
                   ),
                 ),
-
                 Container(
                   height: size.height * 0.60 - 56,
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 0, bottom: 24,),
+                  padding: EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 0,
+                    bottom: 24,
+                  ),
                   child: GridView.count(
                     crossAxisCount: 3,
                     crossAxisSpacing: 8,
@@ -233,7 +224,9 @@ class _Profil1State extends State<Profil1> {
                             Radius.circular(10),
                           ),
                           image: DecorationImage(
-                            image: AssetImage("assets/images/Post_" + index.toString() + ".jpg"), 
+                            image: AssetImage("assets/images/Post_" +
+                                index.toString() +
+                                ".jpg"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -241,10 +234,8 @@ class _Profil1State extends State<Profil1> {
                     }),
                   ),
                 ),
-
               ],
             ),
-          
             Positioned(
               top: 72,
               left: 10,
@@ -262,7 +253,6 @@ class _Profil1State extends State<Profil1> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

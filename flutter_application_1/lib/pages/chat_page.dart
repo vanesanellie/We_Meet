@@ -4,7 +4,6 @@ import 'package:flutter_application_1/pages/chat_detail_page.dart';
 import 'package:flutter_application_1/theme/colors.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
-import 'package:flutter_svg/svg.dart';
 
 class ChatPage extends StatefulWidget {
   @override
@@ -168,7 +167,7 @@ class _ChatPageState extends State<ChatPage> {
                 Navigator.push(context, MaterialPageRoute(builder: (_) => ChatDetailPage()));
               },
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.all(10.0),
                 child: Row(
                   children: [
                     Container(
@@ -244,7 +243,6 @@ class _ChatPageState extends State<ChatPage> {
         padding: EdgeInsets.only(top: 30, left: 20, right: 20),
         child: Column(
           children: [
-            SvgPicture.asset("assets/images/video.svg", width: 100),
             SizedBox(height: 20),
             Text(
               "Video Chat With Anyone",
@@ -262,7 +260,7 @@ class _ChatPageState extends State<ChatPage> {
               width: size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: primary,
+                color: Colors.red,
               ),
               child: Center(
                 child: Text("Create Room", style: TextStyle(color: textWhite)),
