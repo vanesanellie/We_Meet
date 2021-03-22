@@ -105,6 +105,10 @@ class Body extends StatelessWidget {
                   borderRadius: new BorderRadius.circular(25.0),
                   borderSide: new BorderSide(),
                 ),
+                 prefixIcon: Icon(
+                  Icons.person,
+                  size: 20,
+                ),
                 //fillColor: Colors.green
               ),
               validator: (val) {
@@ -119,14 +123,22 @@ class Body extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
             ),
+            SizedBox(
+              height: 25,
+            ),
             new TextFormField(
               controller: password,
               decoration: new InputDecoration(
                 labelText: "Enter Password",
                 fillColor: Colors.white,
+                filled: true,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
                   borderSide: new BorderSide(),
+                ),
+                 prefixIcon: Icon(
+                  Icons.lock,
+                  size: 20,
                 ),
                 //fillColor: Colors.green
               ),
@@ -142,14 +154,22 @@ class Body extends StatelessWidget {
                 fontFamily: "Poppins",
               ),
             ),
+            SizedBox(
+              height: 25,
+            ),
             new TextFormField(
               controller: email,
               decoration: new InputDecoration(
                 labelText: "Enter Email",
                 fillColor: Colors.white,
+                filled: true,
                 border: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(25.0),
                   borderSide: new BorderSide(),
+                ),
+                prefixIcon: Icon(
+                  Icons.email,
+                  size: 20,
                 ),
                 //fillColor: Colors.green
               ),
@@ -164,6 +184,9 @@ class Body extends StatelessWidget {
               style: new TextStyle(
                 fontFamily: "Poppins",
               ),
+            ),
+             SizedBox(
+              height: 15,
             ),
             RoundedButton(
               text: "REGISTER",
