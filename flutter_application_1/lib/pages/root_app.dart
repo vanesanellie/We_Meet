@@ -2,12 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Explore/_Explore1.dart';
+import 'package:flutter_application_1/Screens/Login/login_screen.dart';
 import 'package:flutter_application_1/Screens/Notif/Notification.dart';
 import 'package:flutter_application_1/Screens/Profile/_Profil1.dart';
+import 'package:flutter_application_1/Screens/Upload/Upload1.dart';
 import 'package:flutter_application_1/pages/chat_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/theme/colors.dart';
-import 'package:flutter_application_1/Screens/Upload/upload1.dart';
+import 'package:flutter_application_1/Screens/feeds/feeds.dart';
 
 class RootApp extends StatefulWidget {
   @override
@@ -155,7 +157,7 @@ class _RootAppState extends State<RootApp> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return NewPostPage();
+                      return UploadPage();
                     },
                   ),
                 );
