@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
-
+import 'package:http/http.dart' as http;
 class Profil1 extends StatefulWidget {
   @override
   _Profil1State createState() => _Profil1State();
 }
 
 class _Profil1State extends State<Profil1> {
+  String username;
+
+  Future getData() async {
+    var url = 'https://wemeetuntar.000webhostapp.com/Login.php';
+    http.post(Uri.parse (url), body: {
+        "login_username" : username
+    });
+  }
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
+
+    getData();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -42,7 +53,7 @@ class _Profil1State extends State<Profil1> {
                         height: 16,
                       ),
                       Text(
-                        "Angellina",
+                        "$username",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

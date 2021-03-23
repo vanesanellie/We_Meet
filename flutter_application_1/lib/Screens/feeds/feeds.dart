@@ -15,8 +15,7 @@ class UploadPage extends StatefulWidget {
  
 class UploadPageState extends State<UploadPage> {
   //
-  static final String uploadEndPoint =
-      "https://wemeetuntar.000webhostapp.com/Feed.php";
+  static final String uploadEndPoint = "https://wemeetuntar.000webhostapp.com/Feed.php";
   Future<File> file;
   String status = '';
   String image_base64;
@@ -90,7 +89,7 @@ class UploadPageState extends State<UploadPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Upload Image Demo"),
+        title: Text("Upload Image"),
       ),
       body: Container(
         padding: EdgeInsets.all(30.0),
