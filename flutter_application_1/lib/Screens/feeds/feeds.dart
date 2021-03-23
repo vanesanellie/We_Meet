@@ -3,7 +3,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
- 
+import 'package:flutter_application_1/Screens/Profile/_Profil1.dart'; 
+
 class UploadPage extends StatefulWidget {
   UploadPage() : super();
  
@@ -37,23 +38,42 @@ class UploadPageState extends State<UploadPage> {
  
   startUpload() {
     setStatus('Uploading Image...');
-    if (null == tmpFile) {
+    if (tmpFile == null) {
       setStatus(errMessage);
       return;
     }
-    String caption = tmpFile.path.split('/').last;
-    upload(caption);
+    //String caption = tmpFile.path.split('/').last;
+    upload();
   }
  
-  upload(String caption) {
-    http.post(Uri.parse (uploadEndPoint), body: {
-      "image_base64": image_base64,
-      "caption": caption,
-    }).then((result) {
-      setStatus(result.statusCode == 200 ? result.body : errMessage);
-    }).catchError((error) {
-      setStatus(error);
-    });
+  Future upload() async {
+    // http.post(Uri.parse (uploadEndPoint), body: {
+    //   "username": "angel",
+    //   "image_base64": image_base64,
+    //   "caption": "",
+    //   "datetime": DateTime.now()
+    // }).then((result) {
+    //   setStatus(result.statusCode == 200 ? result.body : errMessage);
+    // }).catchError((error) {
+    //   setStatus(error);
+    // });
+    var data = {"username": "angel", "image_base64": image_base64, "caption": "blabla"};
+    var response = await http.post(Uri.parse(uploadEndPoint), body: (data));
+    var message = (response.body);
+    if (message == "Upload Success") {
+      setStatus('Upload Success...');
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return Profil1();
+          },
+        ),
+      );
+    }
+    else {
+      setStatus('Upload Failed...');
+    }
   }
  
   Widget showImage() {
