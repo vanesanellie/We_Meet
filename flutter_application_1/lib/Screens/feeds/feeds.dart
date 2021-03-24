@@ -17,13 +17,13 @@ class UploadPage extends StatefulWidget {
  
 class UploadPageState extends State<UploadPage> {
   //
-  static final String uploadEndPoint = "https://wemeetuntar.000webhostapp.com/Feed.php";
+  final String uploadEndPoint = "https://wemeetuntar.000webhostapp.com/Feed.php";
+  final caption = TextEditingController();
   Future<File> file;
   String status = '';
   String image_base64;
   File tmpFile;
   String errMessage = 'Error Uploading Image';
- 
   chooseImage() {
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
@@ -58,7 +58,8 @@ class UploadPageState extends State<UploadPage> {
     // }).catchError((error) {
     //   setStatus(error);
     // });
-    var data = {"username": "angel", "image_base64": image_base64, "caption": "blabla"};
+    String isi = caption.text;
+    var data = {"username": "angel", "image_base64": image_base64, "caption": isi};
     var response = await http.post(Uri.parse(uploadEndPoint), body: (data));
     var message = (response.body);
     if (message == "Upload Success") {
@@ -138,7 +139,8 @@ class UploadPageState extends State<UploadPage> {
               child: Column(children: <Widget>[
               Padding(padding: EdgeInsets.only(top: 30.0)),
                 TextFormField(
-              decoration: new InputDecoration(
+                controller: caption,
+                decoration: new InputDecoration(
                 labelText: "Caption",
                 fillColor: Colors.white,
                 filled: true,

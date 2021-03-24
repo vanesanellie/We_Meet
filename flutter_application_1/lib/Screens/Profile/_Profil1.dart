@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/getProfile.dart';
+import 'package:flutter_application_1/pages/edit_profile.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
+
 class Profil1 extends StatefulWidget {
   @override
   _Profil1State createState() => _Profil1State();
@@ -13,17 +15,16 @@ class _Profil1State extends State<Profil1> {
   String username;
   getData() async {
     var url = 'https://wemeetuntar.000webhostapp.com/GetProfile.php';
-    var data = {"result":username};
+    var data = {"result": username};
     var response = await http.post(Uri.parse(url), body: (data));
     data = json.decode(response.body);
-    print (username);
+    print(username);
   }
-  
+
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
-    
+
     getData();
 
     return Scaffold(
@@ -78,22 +79,29 @@ class _Profil1State extends State<Profil1> {
                         height: 10,
                       ),
                       Container(
-                        height: 30,
-                        width: 50,
-                        color: Colors.blue,
-                        child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                                  Text(
+                          height: 30,
+                          width: 50,
+                          color: Colors.blue,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SettingsUI()),
+                                    );
+                                  },
+                                  child: Text(
                                     "EDIT",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
                                     ),
                                   ),
-                                  ]
-                        )
-                      ),
+                                ),
+                              ])),
                       Expanded(
                         child: Container(),
                       ),
