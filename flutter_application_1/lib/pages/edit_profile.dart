@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Profile/_Profil1.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 
 
@@ -31,7 +32,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Profil1()));},
         ),
         actions: [
           IconButton(
