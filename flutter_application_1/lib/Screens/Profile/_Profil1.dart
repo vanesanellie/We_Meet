@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/edit_profile.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
 class Profil1 extends StatefulWidget {
@@ -80,11 +81,20 @@ class _Profil1State extends State<Profil1> {
                         child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                                  Text(
+                          GestureDetector(
+                            onTap: (){
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SettingsUI()),
+                        );
+                        },
+                          
+                                    child :Text(
                                     "EDIT",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
+                                    ),
                                     ),
                                   ),
                                   ]
