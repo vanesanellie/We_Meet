@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Login/components/background.dart';
+import 'package:flutter_application_1/Screens/Profile/_Profil1.dart';
 import 'package:flutter_application_1/Screens/getProfile.dart';
 import 'package:flutter_application_1/components/text_field_container.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
@@ -9,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_application_1/components/already_have_an_account_acheck.dart';
 import 'package:flutter_application_1/Screens/Signup/signup_screen.dart';
 import 'package:flutter_application_1/components/rounded_button.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -23,7 +25,9 @@ class _BodyState extends State<Body> {
   Future userLogin() async {
     setState(() {
       visible = true;
+      
     });
+  
 
     String email = login_username.text;
     String password = login_password.text;
@@ -31,8 +35,17 @@ class _BodyState extends State<Body> {
     String url = 'https://wemeetuntar.000webhostapp.com/Login.php';
 
     var data = {"login_username": email, "login_password": password};
-
+    //var session = FlutterSession();
     var response = await http.post(Uri.parse(url), body: (data));
+
+    Future<void> saveData(context) async {
+    String email = "login_username";
+    await FlutterSession().set('username', email);
+    
+    //await FlutterSession().set("username", email);
+    Navigator.push(context, 
+       MaterialPageRoute(builder: (_context) => Profil1()));
+  }
 
     var message = (response.body);
     print(response.body);
@@ -83,9 +96,11 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {    
+    
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Container(
+        
         padding: new EdgeInsets.only(
             top: 20.0, right: 50.0, left: 50.0, bottom: 50.0),
         child: Column(

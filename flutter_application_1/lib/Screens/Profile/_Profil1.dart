@@ -1,10 +1,11 @@
 import 'dart:convert';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/getProfile.dart';
 import 'package:flutter_application_1/pages/edit_profile.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_session/flutter_session.dart';
 
 class Profil1 extends StatefulWidget {
   @override
@@ -13,20 +14,18 @@ class Profil1 extends StatefulWidget {
 
 class _Profil1State extends State<Profil1> {
   String username;
-  getData() async {
-    var url = 'https://wemeetuntar.000webhostapp.com/GetProfile.php';
-    var data = {"result": username};
-    var response = await http.post(Uri.parse(url), body: (data));
-    data = json.decode(response.body);
-    print(username);
+  Future<void> getUsername() async {
+    username = await FlutterSession().get("username");
+    // print(username);
   }
-
+  
   @override
   Widget build(BuildContext context) {
+    Timer(Duration(seconds: 1), () => setState(() {
+            getUsername();
+          }));
+    
     Size size = MediaQuery.of(context).size;
-
-    getData();
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -58,7 +57,7 @@ class _Profil1State extends State<Profil1> {
                         height: 16,
                       ),
                       Text(
-                        "$username",
+                        '$username',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
