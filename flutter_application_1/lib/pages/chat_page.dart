@@ -225,7 +225,7 @@ class _ChatPageState extends State<ChatPage> {
                     Container(
                       width: (size.width - 20) * 0.15,
                       alignment: Alignment.centerRight,
-                      child: Icon(Feather.camera, color: textBlack.withOpacity(0.5),),
+                      child: Icon(Icons.chat, color: textBlack.withOpacity(0.5),),
                     ),
                   ],
                 ),

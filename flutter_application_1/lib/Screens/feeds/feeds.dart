@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_application_1/Screens/Profile/_Profil1.dart'; 
+import 'package:flutter_application_1/components/rounded_button.dart';
 
 class UploadPage extends StatefulWidget {
   UploadPage() : super();
@@ -98,6 +99,8 @@ class UploadPageState extends State<UploadPage> {
         } else {
           return const Text(
             'No Image Selected',
+            style: TextStyle(fontSize: 17.0),
+            
             textAlign: TextAlign.center,
           );
         }
@@ -110,29 +113,70 @@ class UploadPageState extends State<UploadPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Upload Image"),
+        backgroundColor: Colors.white,
       ),
       body: Container(
         padding: EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            OutlineButton(
-              onPressed: chooseImage,
-              child: Text('Choose Image'),
+            RoundedButton(
+              text: "Chose Image",
+              press: () {
+                chooseImage();
+              },
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
+
             showImage(),
-            SizedBox(
-              height: 20.0,
+          
+            Container
+            ( 
+              alignment: Alignment.center,
+              child: Column(children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 30.0)),
+                TextFormField(
+              decoration: new InputDecoration(
+                labelText: "Caption",
+                fillColor: Colors.white,
+                filled: true,
+                border: new OutlineInputBorder(
+                  borderRadius: new BorderRadius.circular(25.0),
+                  borderSide: new BorderSide(),
+                ),
+                prefixIcon: Icon(
+                  Icons.mode_outlined,
+                  size: 20,
+                ),
+                //fillColor: Colors.green
+              ),
+              validator: (val) {
+                if (val.length == 0) {
+                  return "Username cannot be empty";
+                } else {
+                  return null;
+                }
+              },
+              keyboardType: TextInputType.emailAddress,
+              style: new TextStyle(
+                fontFamily: "Poppins",
+              ),
             ),
-            OutlineButton(
-              onPressed: startUpload,
-              child: Text('Upload Image'),
+              ],),
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
+            ),
+           RoundedButton(
+              text: "Upload Choosed Image",
+              press: () {
+                startUpload();
+              },
+            ),
+            SizedBox(
+              height: 10.0,
             ),
             Text(
               status,
@@ -143,9 +187,7 @@ class UploadPageState extends State<UploadPage> {
                 fontSize: 20.0,
               ),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
+
           ],
         ),
       ),

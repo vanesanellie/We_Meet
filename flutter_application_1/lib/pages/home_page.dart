@@ -191,10 +191,7 @@ class PostItem extends StatelessWidget {
               },
             ),
             SizedBox(width: .0),
-            IconButton(
-              icon: Icon(Icons.share_outlined, size: 30, color: Colors.black),
-              onPressed: () {},
-            ),
+            
             SizedBox(width: 1.0),
           ]),
         ),

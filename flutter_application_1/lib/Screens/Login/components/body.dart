@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Screens/Login/components/background.dart';
+import 'package:flutter_application_1/Screens/getProfile.dart';
 import 'package:flutter_application_1/components/text_field_container.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'dart:convert';
@@ -16,40 +17,31 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   bool visible = false;
-  // Getting value from TextField widget.
   final login_username = TextEditingController();
   final login_password = TextEditingController();
 
   Future userLogin() async {
-    // Showing CircularProgressIndicator.
     setState(() {
       visible = true;
     });
 
-    // Getting value from Controller
     String email = login_username.text;
     String password = login_password.text;
 
-    // SERVER LOGIN API URL
     String url = 'https://wemeetuntar.000webhostapp.com/Login.php';
 
-    // Store all data with Param Name.
     var data = {"login_username": email, "login_password": password};
 
-    // Starting Web API Call.
     var response = await http.post(Uri.parse(url), body: (data));
 
-    // Getting Server response into variable.
     var message = (response.body);
     print(response.body);
-    // If the Response Message is Matched.
+
     if (message == "Login Matched") {
-      // Hiding the CircularProgressIndicator.
       setState(() {
         visible = false;
       });
 
-      // Navigate to Profile Screen & Sending Email to Next Screen.
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -60,13 +52,11 @@ class _BodyState extends State<Body> {
       );
 
     } else {
-      // If Email or Password did not Matched.
-      // Hiding the CircularProgressIndicator.
+
       setState(() {
         visible = false;
       });
 
-      // Showing Alert Dialog with Response JSON Message.
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -86,12 +76,13 @@ class _BodyState extends State<Body> {
     }
   }
 
+
   Color hexToColor(String code) {
     return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     Size size = MediaQuery.of(context).size;
     return Background(
       child: Container(

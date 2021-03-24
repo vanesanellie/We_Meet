@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/getProfile.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
 class Profil1 extends StatefulWidget {
@@ -8,18 +11,19 @@ class Profil1 extends StatefulWidget {
 
 class _Profil1State extends State<Profil1> {
   String username;
-
-  Future getData() async {
-    var url = 'https://wemeetuntar.000webhostapp.com/Login.php';
-    http.post(Uri.parse (url), body: {
-        "login_username" : username
-    });
+  getData() async {
+    var url = 'https://wemeetuntar.000webhostapp.com/GetProfile.php';
+    var data = {"result":username};
+    var response = await http.post(Uri.parse(url), body: (data));
+    data = json.decode(response.body);
+    print (username);
   }
+  
   @override
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
-
+    
     getData();
 
     return Scaffold(
