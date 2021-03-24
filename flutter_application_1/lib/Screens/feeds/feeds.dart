@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_application_1/Screens/Profile/_Profil1.dart'; 
 import 'package:flutter_application_1/components/rounded_button.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 class UploadPage extends StatefulWidget {
   UploadPage() : super();
@@ -46,6 +47,12 @@ class UploadPageState extends State<UploadPage> {
     //String caption = tmpFile.path.split('/').last;
     upload();
   }
+
+  String username;
+  Future<void> getUsername() async {
+    username = await FlutterSession().get("username");
+    print(username);
+  }
  
   Future upload() async {
     // http.post(Uri.parse (uploadEndPoint), body: {
@@ -59,7 +66,7 @@ class UploadPageState extends State<UploadPage> {
     //   setStatus(error);
     // });
     String isi = caption.text;
-    var data = {"username": "angel", "image_base64": image_base64, "caption": isi};
+    var data = {"username": '$username', "image_base64": image_base64, "caption": isi};
     var response = await http.post(Uri.parse(uploadEndPoint), body: (data));
     var message = (response.body);
     if (message == "Upload Success") {
@@ -111,6 +118,8 @@ class UploadPageState extends State<UploadPage> {
  
   @override
   Widget build(BuildContext context) {
+    getUsername();
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Upload Image"),
