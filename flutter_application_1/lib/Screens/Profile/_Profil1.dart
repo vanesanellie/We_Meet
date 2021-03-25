@@ -14,17 +14,33 @@ class Profil1 extends StatefulWidget {
 
 class _Profil1State extends State<Profil1> {
   String username;
+  var profiledata;
   Future<void> getUsername() async {
-    username = await FlutterSession().get("username");
-    // print(username);
+    var user = await FlutterSession().get("username");
+    setState(() {
+      username = user;
+    });
+    getData();
+  }
+
+  Future<void> getData() async {
+    String url = 'https://wemeetuntar.000webhostapp.com/GetProfile.php';
+    var data = {"username": username};
+    var response = await http.post(Uri.parse(url), body: (data));
+    var profile = json.decode(response.body);
+    setState(() {
+      profiledata = profile;
+    });
+    print(profiledata);
+  }
+
+  void initState() {
+    getUsername();
+    super.initState();
   }
   
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 1), () => setState(() {
-            getUsername();
-          }));
-    
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       extendBodyBehindAppBar: true,

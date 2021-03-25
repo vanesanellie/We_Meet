@@ -128,6 +128,8 @@ class Body extends StatelessWidget {
             ),
             new TextFormField(
               controller: password,
+              autocorrect: true,
+                obscureText: true,
               decoration: new InputDecoration(
                 labelText: "Enter Password",
                 fillColor: Colors.white,
