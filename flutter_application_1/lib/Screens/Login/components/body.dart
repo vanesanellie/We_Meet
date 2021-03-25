@@ -35,24 +35,7 @@ class _BodyState extends State<Body> {
     String url = 'https://wemeetuntar.000webhostapp.com/Login.php';
 
     var data = {"login_username": email, "login_password": password};
-    //var session = FlutterSession();
     var response = await http.post(Uri.parse(url), body: (data));
-
-<<<<<<< HEAD
-    Future<void> saveData(context) async {
-    String email = "login_username";
-    await FlutterSession().set("username", email);
-=======
-  //   Future<void> saveData(context) async {
-  //   String email = "login_username";
-
-  //   await FlutterSession().set('username', email);
->>>>>>> 3468e5e72063a24dd295cea22ec600b490afeb69
-    
-  //   //await FlutterSession().set("username", email);
-  //   Navigator.push(context, 
-  //      MaterialPageRoute(builder: (_context) => Profil1()));
-  // }
 
     var message = (response.body);
     print(response.body);

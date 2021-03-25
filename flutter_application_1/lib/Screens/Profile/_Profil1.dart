@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/edit_profile.dart';
 import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
+import 'dart:typed_data';
 
 class Profil1 extends StatefulWidget {
   @override
@@ -15,6 +16,9 @@ class Profil1 extends StatefulWidget {
 class _Profil1State extends State<Profil1> {
   String username;
   var profiledata;
+  Uint8List bytes;
+  String friends;
+  String posts;
   Future<void> getUsername() async {
     var user = await FlutterSession().get("username");
     setState(() {
@@ -30,6 +34,7 @@ class _Profil1State extends State<Profil1> {
     var profile = json.decode(response.body);
     setState(() {
       profiledata = profile;
+      bytes= base64.decode(profiledata[0]['BackgroundPic']);
     });
     print(profiledata);
   }
@@ -64,10 +69,22 @@ class _Profil1State extends State<Profil1> {
                       SizedBox(
                         height: 36,
                       ),
-                      CircleAvatar(
-                        radius: 48,
-                        backgroundImage:
-                            AssetImage("assets/images/Post_11.jpg"),
+                      // CircleAvatar(
+                      //   radius: 48,
+                      //   backgroundImage:
+                      //       AssetImage("assets/images/Post_11.jpg"),
+                      // ),
+                      Container(
+                        height: 80,
+                        width: 80,
+                        child: CircleAvatar(
+                          radius: 48,
+                          child: Image.memory(
+                            bytes,
+                            width: 80,
+                            height: 80,
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 16,
@@ -84,7 +101,7 @@ class _Profil1State extends State<Profil1> {
                         height: 4,
                       ),
                       Text(
-                        "Untar",
+                        '${profiledata[0]["DescBox"]}',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -135,7 +152,7 @@ class _Profil1State extends State<Profil1> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    "VISIT",
+                                    "FRIENDS",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
@@ -145,7 +162,7 @@ class _Profil1State extends State<Profil1> {
                                     height: 4,
                                   ),
                                   Text(
-                                    "13564",
+                                    '${profiledata[1]["Friends"]}',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -161,7 +178,7 @@ class _Profil1State extends State<Profil1> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
-                                    "FOLLOWING",
+                                    "POSTS",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
@@ -171,7 +188,7 @@ class _Profil1State extends State<Profil1> {
                                     height: 4,
                                   ),
                                   Text(
-                                    "364",
+                                    '${profiledata[2]["Post"]}',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
