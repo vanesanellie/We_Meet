@@ -36,7 +36,6 @@ class _BodyState extends State<Body> {
 
     var data = {"login_username": email, "login_password": password};
     var response = await http.post(Uri.parse(url), body: (data));
-
     var message = (response.body);
     print(response.body);
 
