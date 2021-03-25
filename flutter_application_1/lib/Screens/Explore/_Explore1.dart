@@ -9,28 +9,27 @@ class Explore1 extends StatefulWidget {
 
 class _Explore1State extends State<Explore1> {
 
-  TextEditingController username = new TextEditingController();
+  TextEditingController searchpeople = new TextEditingController();
   String name;
   String url = 'https://wemeetuntar.000webhostapp.com/Search.php';
-  Future<String> senddata(BuildContext context) async {
+  Future senddata() async {
     final response =
         await http.post(Uri.parse(url), body: {
-          "searchpeople": username.text,
-          name : "result",
+          "searchpeople": searchpeople.text,
+          "result": name,
         });
-
   }
   
 
   @override
   Widget build(BuildContext context) {
 
-    print(name);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: new AppBar(
         title: TextField(
-          controller: username,
+          controller: searchpeople,
           style: TextStyle(color: Colors.black),
           decoration: InputDecoration(
               icon: Icon(Icons.search, color: Colors.black),
@@ -42,7 +41,8 @@ class _Explore1State extends State<Explore1> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.cancel),
-            onPressed: () {},
+            onPressed: () {senddata(); print(searchpeople);
+            },
           ),
         ],
       ),

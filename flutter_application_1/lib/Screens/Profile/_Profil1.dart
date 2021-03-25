@@ -60,7 +60,7 @@ class _Profil1State extends State<Profil1> {
                   height: size.height * 0.45,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/images/Post_11.jpg"),
+                      image: AssetImage("assets/images/WeMeet.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
