@@ -22,12 +22,18 @@ class UploadPageState extends State<UploadPage> {
   final caption = TextEditingController();
   Future<File> file;
   String status = '';
-  String image_base64;
+  String imageBase64;
   File tmpFile;
   String errMessage = 'Error Uploading Image';
-  chooseImage() {
+  bool isUploaded = false;
+  chooseImage() async {
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.gallery);
+    });
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      setState(() {
+        isUploaded = true;
+      });
     });
     setStatus('');
   }
@@ -66,7 +72,7 @@ class UploadPageState extends State<UploadPage> {
     //   setStatus(error);
     // });
     String isi = caption.text;
-    var data = {"username": '$username', "image_base64": image_base64, "caption": isi};
+    var data = {"username": '$username', "image_base64": imageBase64, "caption": isi};
     var response = await http.post(Uri.parse(uploadEndPoint), body: (data));
     var message = (response.body);
     if (message == "Upload Success") {
@@ -84,6 +90,12 @@ class UploadPageState extends State<UploadPage> {
       setStatus('Upload Failed...');
     }
   }
+
+  setUploaded(){
+    setState(() {
+      isUploaded = true;
+    });
+  }
  
   Widget showImage() {
     return FutureBuilder<File>(
@@ -92,7 +104,7 @@ class UploadPageState extends State<UploadPage> {
         if (snapshot.connectionState == ConnectionState.done &&
             null != snapshot.data) {
           tmpFile = snapshot.data;
-          image_base64 = base64Encode(snapshot.data.readAsBytesSync());
+          imageBase64 = base64Encode(snapshot.data.readAsBytesSync());
           return Flexible(
             child: Image.file(
               snapshot.data,
@@ -180,12 +192,14 @@ class UploadPageState extends State<UploadPage> {
             SizedBox(
               height: 10.0,
             ),
-           RoundedButton(
-              text: "Upload Choosed Image",
-              press: () {
-                startUpload();
-              },
-            ),
+           isUploaded ?
+            RoundedButton(
+                text: "Upload Choosed Image",
+                press: () {
+                  startUpload();
+                },
+            )
+            : new Container(),
             SizedBox(
               height: 10.0,
             ),
