@@ -67,10 +67,24 @@ class _RootAppState extends State<RootApp> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              "We Meet",
-              style: TextStyle(fontFamily: 'Billabong', fontSize: 35, color: Colors.black),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(top:20),
+                child: Container(
+                  
+                  height: 120,
+                  width: 120,
+                  
+                  alignment: Alignment.topRight,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage("assets/images/logowm1.jpg"),
+                    fit: BoxFit.cover,
+                  )),
+                ),
+              ),
             ),
+
              SizedBox(width: 50.0),
             IconButton(
               icon: Icon(Icons.favorite, size: 40, color: Colors.black),
