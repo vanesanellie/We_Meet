@@ -377,8 +377,9 @@ class _Profil1State extends State<Profil1> {
                                       fontSize: 30,
                                     ),
                                   ),
+                                  Padding(padding: EdgeInsets.only(top: 30,)),
                                   Icon(Icons.add_a_photo_outlined, size: 100,),
-                                  Padding(padding: EdgeInsets.all(30)),
+                                  Padding(padding: EdgeInsets.only(top: 30)),
                                   RoundedButton(
                                     text: "Click here to Upload",
                                     press: () {

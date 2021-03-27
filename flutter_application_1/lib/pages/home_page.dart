@@ -26,6 +26,16 @@ Future<void> fetchData() async {
     });
     getHome();
   }
+  // Future<String> isLiked(String Loved,String feed) async {
+  //   var user = await FlutterSession().get("username");
+  //   String url =  'https://wemeetuntar.000webhostapp.com/Like.php';
+  //   var data = {
+  //     "LikeStatus": Loved,
+  //     "fromusername": user,
+  //     "feedid": feed
+  //   };
+  //   var response = await http.post(Uri.parse(url), body:(data));
+  // }
 
   Future<void> getHome() async {
     print("masuk getHome");
@@ -66,6 +76,7 @@ Future<void> fetchData() async {
               feedPic = base64.decode(homeData[index]['Image_Base64']);
               return PostItem(
                 postImg: feedPic,
+                feedId: homeData[index]['FeedId'],
                 profileImg: profilePic,
                 name: homeData[index]['Username'],
                 caption: homeData[index]['Caption'],
@@ -93,7 +104,7 @@ class PostItem extends StatelessWidget {
   Uint8List postImg;
   String caption;
   String isLoved;
-
+  String feedId;
   String timeAgo;
   String likedBy;
 
@@ -105,7 +116,8 @@ class PostItem extends StatelessWidget {
     this.isLoved,
     this.timeAgo,
     this.caption,
-    this.likedBy,
+    this.likedBy, 
+    this.feedId,
   }) : super(key: key);
 
   @override
@@ -231,7 +243,7 @@ class PostItem extends StatelessWidget {
             IconButton(
               icon: isLoved == "1" ?
                 Icon(Icons.favorite, size: 30, color: Colors.red) : Icon(Icons.favorite_outline, size: 30, color: Colors.black),
-              onPressed: () {},
+              onPressed: () {isLiked(isLoved,feedId);},
             ),
             SizedBox(width: 1.0),
             IconButton(
@@ -288,4 +300,24 @@ class PostItem extends StatelessWidget {
       ],
     );
   }
+
+  
 }
+
+void isLiked(String isLoved, String feedId) async{
+  print("kepanggilga");
+  var status = isLoved == "1"? "0":"1";
+  var user = await FlutterSession().get("username");
+    String url =  'https://wemeetuntar.000webhostapp.com/Like.php';
+    var data = {
+      "isLikes": status,
+      "fromusername": user,
+      "feedid": feedId
+    };
+    print(data);
+    var response = http.post(Uri.parse(url), body:(data));
+    print(response);
+}
+
+
+

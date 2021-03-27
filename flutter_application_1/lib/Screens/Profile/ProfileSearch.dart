@@ -361,6 +361,7 @@ class _ProfileSearchState extends State<ProfileSearch> {
                                       fontSize: 30,
                                     ),
                                   ),
+                                  Padding(padding: EdgeInsets.only(top: 30,)),
                                   Icon(Icons.no_photography, size: 100,)
                                 ],
                               )),
