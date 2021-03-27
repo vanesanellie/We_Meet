@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Screens/Profile/ProfileSearch.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'package:flutter_session/flutter_session.dart';
+
 
 class Explore1 extends StatefulWidget {
   @override
@@ -68,7 +71,10 @@ class _Explore1State extends State<Explore1> {
           itemCount: listSearch.length,
           itemBuilder: ((BuildContext _context, int position) {
             return new ListTile(
-              leading: Icon(Icons.people),
+              leading: Icon(Icons.people,),
+              onTap: ()async {await FlutterSession().set('usernamesearch', listSearch[position]['Username']); Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfileSearch()));},
               title: new Text( listSearch[position]['Username'])
             );   
           }),
