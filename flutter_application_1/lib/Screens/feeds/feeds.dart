@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter_application_1/Screens/Profile/_Profil1.dart'; 
 import 'package:flutter_application_1/components/rounded_button.dart';
 import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_application_1/pages/root_app.dart';
 
 class UploadPage extends StatefulWidget {
   UploadPage() : super();
@@ -134,7 +135,20 @@ class UploadPageState extends State<UploadPage> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text("Upload Image"),
+        leading: new IconButton(
+              color: Colors.black,
+              icon: Icon(Icons.keyboard_arrow_left),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return RootApp();
+                    },
+                  ),
+                );
+              }),
+        title: Text("Upload Image", style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
       ),
       body: Container(

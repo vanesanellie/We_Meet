@@ -63,6 +63,7 @@ class _RootAppState extends State<RootApp> {
   Widget getAppBar() {
     if (pageIndex == 0) {
       return AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +86,7 @@ class _RootAppState extends State<RootApp> {
               ),
             ),
 
-             SizedBox(width: 50.0),
+             SizedBox(width: 120.0),
             IconButton(
               icon: Icon(Icons.favorite, size: 40, color: Colors.black),
               

@@ -184,8 +184,8 @@ class _Profil1State extends State<Profil1> {
                       ),
                       Container(
                           height: 30,
-                          width: 50,
-                          color: Colors.blue,
+                          width: 65,
+                          color: Colors.green,
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -198,7 +198,7 @@ class _Profil1State extends State<Profil1> {
                                     );
                                   },
                                   child: Text(
-                                    "EDIT",
+                                    "SETTING",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
