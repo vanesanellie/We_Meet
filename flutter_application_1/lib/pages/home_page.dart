@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_application_1/theme/colors.dart';
-import 'package:flutter_application_1/constant/post_json.dart';
 import 'package:flutter_application_1/Screens/Comment/Comments.dart';
 import 'package:flutter_session/flutter_session.dart';
+import 'package:jiffy/jiffy.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   String username;
   List<dynamic> homeData;
 
-  Future<void> fetchData() async {
+Future<void> fetchData() async {
     var user = await FlutterSession().get("username");
     setState(() {
       username = user;
@@ -41,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     fetchData();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return getBody();
@@ -51,11 +52,12 @@ class _HomePageState extends State<HomePage> {
     Uint8List profilePic;
     Uint8List feedPic;
     return SingleChildScrollView(
-      child: Column(
+      child: homeData != null ?
+      Column(
         children: <Widget>[
           Column(
             children: List.generate(homeData.length, (index) {
-              if(homeData[index]['ProfilePic'] != null and homeData[index]['ProfilePic'] != ""){
+               if(homeData[index]['ProfilePic'] != null && homeData[index]['ProfilePic'] != ""){
                 profilePic = base64.decode(homeData[index]['ProfilePic']);
               }
               else {
@@ -68,17 +70,22 @@ class _HomePageState extends State<HomePage> {
                 name: homeData[index]['Username'],
                 caption: homeData[index]['Caption'],
                 isLoved: homeData[index]['isLiked'],
-                timeAgo: homeData[index]['DateTime'],
+                timeAgo: Jiffy(homeData[index]['DateTime']).fromNow()
               );
             }),
           )
         ],
+      )
+      : Container (
+        height: 600,
+        child:
+          Center (
+            child: CircularProgressIndicator(),
+          )
       ),
     );
   }
 }
-
-
 
 class PostItem extends StatelessWidget {
   Uint8List profileImg;
@@ -105,7 +112,6 @@ class PostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -113,77 +119,64 @@ class PostItem extends StatelessWidget {
             horizontal: 15,
           ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.memory(
+                      profileImg,
                       width: 40,
                       height: 40,
-                      alignment: Alignment.topLeft,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                      ),
-                        child: Image.memory(
-                          profileImg,
-                          width: 40,
-                          height: 40,
-                        )
-                      )
-                  ]
-                ),
-              ),
-              Expanded(
-                flex: 5,
-                child: Column (
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "$name",
-                              style: TextStyle(
-                                  color: black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
+                    )
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    width: 200,
+                    //padding: const EdgeInsets.only(),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "$name",
+                            style: TextStyle(
+                                color: black,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
                     ),
-                  ]
-                )
-              ),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, right: 0),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: "$timeAgo ago ",
-                              style: TextStyle(
-                                  color: Colors.black26,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500),
+                  ),
+                  Container(
+                    width: 110,
+                    padding: const EdgeInsets.only(left: 0, right: 0),
+                    child: RichText(
+                      textAlign: TextAlign.right,
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "$timeAgo",
+                            style: TextStyle(
+                                color: Colors.black26,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ]
-                )
-              )
+                  ),
+                ],
+              ),
+              //Icon(LineIcons.horizontalEllipsis, color: black),
             ],
           ),
         ),
@@ -214,7 +207,7 @@ class PostItem extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              color: white
+              color: white,
             ),
             child: Image.memory(
               postImg,
