@@ -137,7 +137,42 @@ class _Profil1State extends State<Profil1> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        child: Column(
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                          height: 30,
+                          width: 65,
+                          color: Colors.green,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SettingsUI()),
+                                    );
+                                  },
+                                  child: Text(
+                                    "SETTING",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ])),
+                      Expanded(
+                        child: Container(),
+                      ),
+                      Container(
+                        height: 64,
+                        color: Colors.black.withOpacity(0.4),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             SizedBox(
                               height: 36,

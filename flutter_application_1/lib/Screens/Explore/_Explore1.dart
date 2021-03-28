@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter_session/flutter_session.dart';
-
+import 'package:flutter_application_1/pages/root_app.dart';
 
 class Explore1 extends StatefulWidget {
   @override
@@ -44,6 +44,19 @@ class _Explore1State extends State<Explore1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        leading: new IconButton(
+              color: Colors.black,
+              icon: Icon(Icons.keyboard_arrow_left),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return RootApp();
+                    },
+                  ),
+                );
+              }),
         title: TextField(
           controller: searchpeople,
           style: TextStyle(color: Colors.black),
@@ -58,10 +71,12 @@ class _Explore1State extends State<Explore1> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
+            color: Colors.black,
             onPressed: () {fetchData();},
           ),
           IconButton(
             icon: Icon(Icons.cancel),
+            color: Colors.black,
             onPressed: () {reset();},
           ),
         ],

@@ -14,6 +14,7 @@ class Notif1State extends State<Notif1> {
         appBar: new AppBar(
           backgroundColor: Colors.white,
           leading: new IconButton(
+              color: Colors.black,
               icon: Icon(Icons.keyboard_arrow_left),
               onPressed: () {
                 Navigator.push(
@@ -25,7 +26,10 @@ class Notif1State extends State<Notif1> {
                   ),
                 );
               }),
-          title: Text("Notifications"),
+          title: Text(
+            'Notifications',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: Padding(
             padding: const EdgeInsets.all(5.0),
