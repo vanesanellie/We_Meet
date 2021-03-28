@@ -94,12 +94,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 children: List.generate(chatDetails.length, (index) {
                   return Padding(
                     padding: EdgeInsets.only(left: 10, right: 10),
-                    child: ChatBubbles(
-                      isMe: chatDetails[index]['isMe'],
-                      profile: chatDetails[index]['profile'],
-                      message: chatDetails[index]['message'],
-                      messageNo: chatDetails[index]['messageNo'],
-                    ),
+                    
                   );
                 })
               ),
