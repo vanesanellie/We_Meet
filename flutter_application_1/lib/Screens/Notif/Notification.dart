@@ -21,7 +21,8 @@ String base64Default = "iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAQAAABh3xcBAAAABGdBTUEA
   List<dynamic> homeData;
   Uint8List profilePic;
   bool isLoading = true;
-  
+  bool isEmpty;
+
   Future<void> fetchData() async {
     var user = await FlutterSession().get("username");
     setState(() {
@@ -35,12 +36,21 @@ String base64Default = "iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAQAAABh3xcBAAAABGdBTUEA
      String url = 'https://wemeetuntar.000webhostapp.com/Notification.php';
     var data = {"username": username};
     var response = await http.post(Uri.parse(url), body: (data));
-    var responseHome = json.decode(response.body);
-    setState(() {
-        homeData = responseHome;
+    print(response.body);
+    if(response.body == ""){
+      setState(() {
+        isEmpty = true;
         isLoading = false;
-    });
-    
+      });
+    }
+    else {
+    var responseHome = json.decode(response.body);
+      setState(() {
+          homeData = responseHome;
+          isLoading = false;
+          isEmpty = false;
+      });
+    }
   }
 
   void initState() {
@@ -80,6 +90,7 @@ String base64Default = "iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAQAAABh3xcBAAAABGdBTUEA
     Uint8List image;
     return SingleChildScrollView(
       child: isLoading == false ?
+      isEmpty == false ?
       Column(
         children: <Widget>[
           Column(
@@ -98,6 +109,13 @@ String base64Default = "iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAQAAABh3xcBAAAABGdBTUEA
             }),
           )
         ],
+      )
+      : Center(
+        child: Container(
+          padding: EdgeInsets.only(top: 300),
+          child: Text("Your notification is empty",
+            style: TextStyle(fontSize: 25))
+        )
       )
       : Container (
         height: 600,
