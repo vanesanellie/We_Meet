@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/root_app.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_application_1/theme/colors.dart';
@@ -75,6 +76,7 @@ Future<void> fetchData() async {
               }
               feedPic = base64.decode(homeData[index]['Image_Base64']);
               return PostItem(
+                index: index,
                 postImg: feedPic,
                 feedId: homeData[index]['FeedId'],
                 profileImg: profilePic,
@@ -107,6 +109,8 @@ class PostItem extends StatelessWidget {
   String feedId;
   String timeAgo;
   String likedBy;
+  int index;
+  _HomePageState homePage;
 
   PostItem({
     Key key,
@@ -118,6 +122,7 @@ class PostItem extends StatelessWidget {
     this.caption,
     this.likedBy, 
     this.feedId,
+    this.index,
   }) : super(key: key);
 
   @override
@@ -243,7 +248,7 @@ class PostItem extends StatelessWidget {
             IconButton(
               icon: isLoved == "1" ?
                 Icon(Icons.favorite, size: 30, color: Colors.red) : Icon(Icons.favorite_outline, size: 30, color: Colors.black),
-              onPressed: () {isLiked(isLoved,feedId);},
+              onPressed: () {isLiked(isLoved,feedId,index,context);},
             ),
             SizedBox(width: 1.0),
             IconButton(
@@ -300,24 +305,30 @@ class PostItem extends StatelessWidget {
       ],
     );
   }
-
-  
 }
 
-void isLiked(String isLoved, String feedId) async{
-  print("kepanggilga");
-  var status = isLoved == "1"? "0":"1";
-  var user = await FlutterSession().get("username");
-    String url =  'https://wemeetuntar.000webhostapp.com/Like.php';
-    var data = {
-      "isLikes": status,
-      "fromusername": user,
-      "feedid": feedId
-    };
-    print(data);
-    var response = http.post(Uri.parse(url), body:(data));
-    print(response);
-}
+void isLiked(String isLoved, String feedId, int index, BuildContext context) async{
+      print("kepanggilga");
+      var status = isLoved == "1"? "0":"1";
+      var user = await FlutterSession().get("username");
+        String url =  'https://wemeetuntar.000webhostapp.com/Like.php';
+        var data = {
+          "isLikes": status,
+          "fromusername": user,
+          "feedid": feedId
+        };
+        print(data);
+        var response = await http.post(Uri.parse(url), body:(data));
+        print(response);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return RootApp();
+            },
+          ),
+        );
+  }
 
 
 

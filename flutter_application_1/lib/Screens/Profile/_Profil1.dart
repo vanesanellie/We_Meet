@@ -73,10 +73,8 @@ class _Profil1State extends State<Profil1> {
     var response = await http.post(Uri.parse(url), body: (data));
     var profile = json.decode(response.body);
     if (profile[0]['ProfilePic'] == null || profile[0]['ProfilePic'] == "") {
-      print(base64.decode(base64Default));
       return base64.decode(base64Default);
     } else {
-      print(base64.decode(profile[0]['ProfilePic']));
       return base64.decode(profile[0]['ProfilePic']);
     }
   }
@@ -137,42 +135,7 @@ class _Profil1State extends State<Profil1> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                          height: 30,
-                          width: 65,
-                          color: Colors.green,
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SettingsUI()),
-                                    );
-                                  },
-                                  child: Text(
-                                    "SETTING",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
-                              ])),
-                      Expanded(
-                        child: Container(),
-                      ),
-                      Container(
-                        height: 64,
-                        color: Colors.black.withOpacity(0.4),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        child: Column(
                           children: <Widget>[
                             SizedBox(
                               height: 36,
@@ -222,31 +185,31 @@ class _Profil1State extends State<Profil1> {
                             SizedBox(
                               height: 10,
                             ),
-                            Container(
+                            GestureDetector(
+                              onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                builder: (context) =>
+                                  SettingsUI()),
+                                );
+                              },
+                              child: Container(
                                 height: 30,
-                                width: 50,
-                                color: Colors.blue,
+                                width: 65,
+                                color: Colors.green,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SettingsUI()),
-                                          );
-                                        },
-                                        child: Text(
-                                          "EDIT",
+                                        Text(
+                                          "Setting",
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                           ),
                                         ),
-                                      ),
                                     ])),
+                            ),
                             Expanded(
                               child: Container(),
                             ),
