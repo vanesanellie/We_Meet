@@ -187,13 +187,7 @@ class _ProfileSearchState extends State<ProfileSearch> {
                                                     SettingsUI()),
                                           );
                                         },
-                                        child: Text(
-                                          "EDIT",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                          ),
-                                        ),
+                                        
                                       ),
                                     ])),
                             Expanded(
