@@ -171,25 +171,7 @@ class _ProfileSearchState extends State<ProfileSearch> {
                             SizedBox(
                               height: 10,
                             ),
-                            Container(
-                                height: 30,
-                                width: 50,
-                                color: Colors.blue,
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SettingsUI()),
-                                          );
-                                        },
-                                        
-                                      ),
-                                    ])),
+                            
                             Expanded(
                               child: Container(),
                             ),
